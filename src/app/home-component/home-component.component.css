@@ -1,0 +1,52 @@
+.row .col-md-6 div button{
+    background-color: #8b22e2;
+    color:white;
+    border-radius:30px;
+    font-size:20px;
+    width:50%;
+    height:45px;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 20%);
+}
+
+
+.social-media svg{
+    margin-right: 10px;
+   
+}
+
+.d-flex .d-flex{
+    color: white;
+    font-weight: bold;
+    
+}
+
+.ct{
+    
+    
+}
+
+.ct div{
+    margin-top:10px;
+    margin-right:20px;
+    margin-left:20px;
+   
+}
+
+.ct div{
+    margin-left:20px;
+   
+}
+.d-flex .d-flex .fc{
+    margin-top: 10px;
+    
+}
+.d-flex .d-flex .fc div{
+    margin-top: 10px;
+    margin-right: 10px;
+    
+}

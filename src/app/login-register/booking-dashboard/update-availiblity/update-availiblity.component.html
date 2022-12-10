@@ -1,0 +1,31 @@
+<div class="input-group mb-3 m-1 mt-2 d-flex flex-column" style="width:50%">
+  <h5>Add Booking Time Slots</h5>
+    <div class="d-flex" style="height: 50px;width:400px">
+     <input type="time" id="timepicker" class="form-control" aria-label="Sizing example input" #time>
+       <button class=" p-0 "  style="background-color:#8b22e2;color:white;width:250px;outline:none;border:none;" (click)="addtime(time.value)">Add Times</button>
+    </div>
+</div>
+<table class="table table-hover p-0" style="overflow: scroll;">
+  <thead>
+    <tr>
+      <th scope="col">Sr no</th>
+      <th scope="col">Appointment Time</th>
+      <th scope="col">Action</th>
+      
+    
+    </tr>
+  </thead>
+  <tbody>
+   <ng-container *ngFor="let i Of app_data; let index=index">
+    <tr >
+      <td class="">{{index+1}}</td>
+      <td class="">{{i.timeslots | TimeFormat24Pipe}}</td>
+      <td> <button   class="btn m-1"  (click)="delete_timeslots(i.timeslots)"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16" >
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+      </button></td>
+    </tr>
+  </ng-container>
+  
+  </tbody>
+</table>

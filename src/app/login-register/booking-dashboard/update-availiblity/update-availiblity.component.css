@@ -1,0 +1,5 @@
+#timepicker:before {
+    content:'Time Slots:';
+    margin-right:.6em;
+    color:#211d1d;
+    }

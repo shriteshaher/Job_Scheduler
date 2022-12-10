@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+.bold{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#search{
+    width:250px;
+}
+
+.display-1{
+    display: none;
+}
+
+.form-control,.form-select{
+    width:500px;
+}
+
+@media (max-width: 1304px) {
+    .col-sm-12{
+      width:380px;
+    }
+
+   .form-model{
+   
+    width:400px;
+   }
+   .centering {
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+    .form-control,.form-select {
+         width:200px;
+    }
+ 
+     
+  .col-sm-3  {
+    
+    width:350px;
+    overflow: scroll;
+  }  
+
+  .search-input{
+    width: 100px;
+  }
+  
+    
+    
+}
+

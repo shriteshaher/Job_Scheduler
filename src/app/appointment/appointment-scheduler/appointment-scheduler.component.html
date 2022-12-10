@@ -1,0 +1,150 @@
+<div class="container" >
+ <div class="row">
+    <div class="col-md-2 p-2">
+     <div class="text-black " style="color:black;font-size:20px;" [ngClass]="{'bold':t1}" (click)="toggle(true,false)">Choose Appointment</div>
+     <div class="text-black " style="color:black;font-size:20px;"   [ngClass]="{'bold':t2}" (click)="toggle(false,true)">Track Status </div>
+    </div>
+    <div class="col-md-10 p-2  d-flex     ">
+      
+        <div [ngClass]="{'display-1':t1}">
+           <div>
+           <div class="d-flex py-1 search-input"    >
+            <input class="form-control  " type="text" placeholder="Enter Email Search Appoinment Status"  #ap_name  id="search" >
+            <button type="button" class=" p-2 col-md-2" style=" background-color: #8b22e2;width:100px;outline:none;border:none;color: aliceblue;" (click)="searchApStatus(ap_name.value)">Search</button>
+           </div>
+           
+           <div class="col-md-12 col-sm-3 ">
+            <table class="table table-hover table-responsive " *ngIf="searchResult.length!=0;" style="overflow:scroll" caption="Search Result">
+               <thead>
+                 <tr class="border border-1">
+                   <th scope="col">Sr no</th>
+                   <th scope="col">Name</th>
+                   <th scope="col">Mobile No</th>
+                   <th scope="col">Address</th>
+                   <th scope="col">Appointement Bussiness</th>
+                   <th scope="col">Appointment Date</th>
+                   <th scope="col">Appointment Time</th>
+                   <th scope="col">Status</th>
+                 
+                 </tr>
+               </thead>
+               <tbody>
+                <ng-container *ngFor="let i Of searchResult; let index=index;">
+                 <tr class="border border-1" >
+                   <td class="">{{index+1}}</td>
+                   <td class="">{{i.name}}</td>
+                   <td class="">{{i.mobile_no }}</td>
+                   <td class="">{{i.address}}</td>
+                   <td class="">{{i. appointment_business_booking}}</td>
+                   <td class="">{{i.booked_date | date:'mediumDate' }}</td>
+                   <td class="">{{i.booked_time | TimeFormat24Pipe}}</td>
+                   <td class="">{{i.status}}</td>
+                   
+                 </tr>
+               </ng-container>
+               
+               </tbody>
+             </table>
+         </div>
+            </div>
+             <div *ngIf="resultSearch"  class="ms-2" style="color:red;">No Data Is Found</div>
+           </div>
+          <div [ngClass]="{'display-1':t2}" class="col-md-12 p-4 bg-light shadow ap_form "  >
+             <form class="row p-2 d-flex  " [formGroup]="BookAppointment" (ngSubmit)="onSubmit()" >
+               <h3 class="text-center" style="color:#8b22e2">Appoinment Booking Form</h3>
+               <div class="col-md-12 w-100  form-model">
+                  <div class="input-group   d-flex justify-content-between centering"   >
+                    <div class="mt-3">
+                     <input type="text" class="form-control  " placeholder="Name"   formControlName="name">
+                     <div *ngIf=" (BookingFormControls['name'].touched || submitted) && BookingFormControls['name'].errors?.['required']" style="color:red" >
+                        The Name Is Required
+                     </div>
+                    </div>
+                    <div class="mt-3">
+                      <select class="form-select " aria-label="Default select example"  formControlName="appointment_business_booking" (change)="filterAccordingBusinessName(values.value)"  name="values" #values>
+
+                        <option value="Appointer Name" selected>Appointer Name</option>
+                         <ng-container *ngFor="let i of bussiness_names">
+                           <option value={{i.business_name}} >{{i.business_name}}</option>
+                        </ng-container>
+                       </select>
+                     <div *ngIf=" (BookingFormControls['appointment_business_booking'].touched || submitted) && BookingFormControls['appointment_business_booking'].errors?.['forbiddenValues']" style="color:red" >
+                        The Appointer Is Required
+                     </div>
+                  </div>
+                  </div>
+
+
+                  <div class="input-group     d-flex justify-content-between centering "  >
+                     <div class="mt-3">
+                      <input type="text" class="form-control " placeholder="Email"   formControlName="email">
+                         <div *ngIf=" (BookingFormControls['email'].touched || submitted) && BookingFormControls['email'].errors?.['required']" style="color:red" class="ms-2">
+                         The Email Is Required
+                         </div >
+                         <div *ngIf=" (BookingFormControls['email'].touched || submitted) && BookingFormControls['email'].errors?.['email']" style="color:red" class="ms-2">
+                        Please Enter Valid Email
+                         </div>
+                     </div>
+                     <div class="mt-3" >
+                       <input type="text" class="form-control " placeholder="Mobile No"   formControlName="mobile_no">
+
+                       <div *ngIf=" (BookingFormControls['mobile_no'].touched || submitted) && BookingFormControls['mobile_no'].errors?.['required']" style="color:red" class="ms-2">
+                        The Mobile No Is Required
+                        </div>
+
+                        <div *ngIf=" (BookingFormControls['mobile_no'].touched || submitted) && BookingFormControls['mobile_no'].errors?.['pattern']" style="color:red" class="ms-2">
+                            Enter Valid Mobile Number
+                        </div>
+
+                        <div *ngIf=" (BookingFormControls['mobile_no'].touched || submitted) && (BookingFormControls['mobile_no'].errors?.['minlength'] || BookingFormControls['mobile_no'].errors?.['maxlength'])" style="color:red" class="ms-2">
+                             Enter Mobile Number Length
+                        </div>
+                     </div>
+         
+                  </div>
+               
+                  <div class="input-group d-flex justify-content-between centering "  >
+                     <div class="mt-3">
+                        <input type="text" class="form-control " placeholder="Address"   formControlName="address">
+                           <div *ngIf=" (BookingFormControls['address'].touched || submitted) && BookingFormControls['address'].errors?.['required']" style="color:red" class="ms-2">
+                           The Address Is Required
+                           </div>
+                           
+                        </div>
+                     <div class="mt-3">
+                      <select class="form-select " aria-label="Default select example"  formControlName="booked_time" >
+
+                        <option value="Appoinment Time" selected>Appoinment Time</option>
+                        <ng-container *ngFor="let i of bussiness_time1">
+                            <option value={{i}}>{{i |TimeFormat24Pipe}}</option>
+                        </ng-container>
+                       </select>
+
+                     <div *ngIf=" (BookingFormControls['booked_time'].touched || submitted) && BookingFormControls['booked_time'].errors?.['forbiddenValues']" style="color:red" >
+                         Appoinment Time Required
+                     </div>
+                  </div>
+               </div>
+
+                  <div class="input-group  mt-3   d-flex justify-content-center align-item-center centering "  >
+                     <div>
+                      <input type="Date" class="form-control  " placeholder="Name"   formControlName="booked_date"> 
+                  </div>
+
+                  <div class="input-group  p-2  d-flex justify-content-center align-items-center flex-column centering "  >
+                     <div *ngIf="res" style="color:red" >
+                        {{res }}
+                    </div>
+                     <div>
+                      <input type="submit" class="btn  mt-2 btn-primary" placeholder="Name"  style="width:200px" > 
+                    </div>
+                 </div>
+               </div>
+            </div>
+          </form>
+          </div>
+           
+   </div>
+           
+           
+          

@@ -1,0 +1,35 @@
+.container-fluid .col-md-2 div  a{
+    text-decoration: none;
+    color: white;
+    margin-top:20px;
+    font-size:15px;
+    padding:10px;
+}
+
+.active{
+    background-color: #3b1f5a;
+}
+
+.display-visiblity{
+    display: none
+}
+
+.side-bar{
+    width:20%;
+    
+    
+   }
+
+.toogle-sidebar{
+    margin-left: -30px;
+}
+
+
+@media (max-width: 1000px) {
+   .side-bar{
+    width:460px;
+   }
+
+  
+ 
+  }

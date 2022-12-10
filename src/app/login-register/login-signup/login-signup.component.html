@@ -1,0 +1,181 @@
+<div class="container mt-2">
+    <div class="row " >
+        <div class="col-md-8 " id="login-signPageCover" >
+           <div><img src="../../../assets/dist/picktime-logo-128.png" alt="" height="50px" style="position:relative;top:20px;left:20px" routerLink="/main-page"></div>
+
+           <div style="position:relative;top:70%;left:20px;color: #fff;font-size: 22px;;">
+              <h1>Welcome to Gsore App.</h1>
+              <span>The Smartest Online Shop Of Vegietable & Fruits.</span>
+           </div>
+           <div style="color:white;position:relative;top:75%;left:20px;word-spacing:10px">Privacy  Facebook   Twitter   Instagram   Youtube</div>
+        </div>
+        <div class="col-md-4 p-5" style="background-color:white">
+           
+             <div class=" d-flex border border-top-0 border-start-0 border-end-0" style="list-style:none;color:black;">
+                <div style="margin: 4px;" class="fw-bolder" [ngClass]="{'link':t1, 'color1':t1,'color2':t2}" (click)="togglings(true,false)">LOGIN</div>
+                <div style="margin:4px;" class="fw-bolder m-1"  [ngClass]="{'link':t2, 'color1':t2,'color2':t1}" (click)="togglings(false,true)">REGISTER</div>
+             </div>
+            
+             <form  class="py-2 mt-3" name="LF" #LoginForm="ngForm" (ngSubmit)="(LoginForm.valid && onLogin(LoginForm)) " novalidate [ngClass]="{'display-none':t2}">
+               <div class="input-group mb-3 mt-2 ">
+                  <input type="email"  placeholder="Email" class="form-control border border-start-0 border-top-0  border-end-0 " #email="ngModel" name="email"  ngModel=""    required  email>
+               </div>
+
+               <div  *ngIf="(email.touched || LoginForm.submitted)&& email.invalid">
+                    <div class="  alert  p-0" style="color:red ;" *ngIf="email.errors?.['required']">
+                       The Email Required
+                    </div>
+
+                    <div class="  alert  p-0" style="color:red ;" *ngIf="email.errors?.['email']">
+                     Please Enter The Valid Email Address
+                  </div>
+               </div>
+
+               <div class="input-group mb-3 mt-5">
+                  <input type="password" placeholder="Password" class="form-control border border-start-0 border-top-0  border-end-0 " ngModel="" #password="ngModel"  name="password" required="">
+               </div>
+
+               <div  *ngIf="(password.touched  || LoginForm.submitted )&& password.invalid">
+                  <div class=" alert  p-0" style="color:red ;" *ngIf="password.errors?.['required']">
+                     The Password Required
+                  </div>
+               </div>
+               <div class="  alert  p-0" style="color:red ;" *ngIf="res">
+                  {{res }}
+                </div>
+
+               <div class="input-group mb-3 mt-5">
+                 <button type="submit " class="btn  btn1 form-control">Log In</button>
+               </div>
+             </form>
+
+
+             <form  class="py-2 mt-3 "  [formGroup]="registerationForm"  [ngClass]="{'display-none':t1}" (ngSubmit)="onSubmit()" >
+               
+               <div class="input-group  mt-2 ">
+                  <input type="text"  placeholder="Name" class="form-control border border-start-0 border-top-0  border-end-0 "  name="first_name"  formControlName=name>
+               </div>
+
+               <div  *ngIf="(registerFormControl['name'].touched ||submitted)  && registerFormControl['name'].invalid">
+                    <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['name'].errors?.['required']">
+                       The Name Required
+                    </div>
+               </div>
+               
+
+               <div class="input-group  mt-5 ">
+                  <input type="email"  placeholder="Email" class="form-control border border-start-0 border-top-0  border-end-0 "  name="email"  formControlName=email>
+               </div>
+
+               <div  *ngIf="(registerFormControl['email'].touched || submitted)  && registerFormControl['email'].invalid">
+                  <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['email'].errors?.['required']">
+                     The Email Required
+                  </div>
+
+                  <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['email'].errors?.['email']">
+                     The  Valid Email Required
+                  </div>
+             </div>
+
+               <div class="input-group mt-5">
+                  <input type="password" placeholder="Password" class="form-control border border-start-0 border-top-0  border-end-0 "   name="password"  formControlName="password">
+               </div>
+
+               <div  *ngIf="(registerFormControl['password'].touched || submitted)  && registerFormControl['password'].invalid">
+                  <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['password'].errors?.['required']">
+                     The Password Required
+                  </div>
+
+                  <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['password'].errors?.['minlength']">
+                     The Password Should Minimum 8 Character 
+                  </div>
+
+                  <div class="  alert  p-0" style="color:red ;" *ngIf="!registerFormControl['password'].errors?.['minlength'] && registerFormControl['password'].errors?.['pattern']">
+                     Password should have  at least 1 uppercase letter, 1 lowercase
+                                letter and 1 number 
+                  </div>
+
+                 
+             </div>
+
+
+
+
+               <div class="input-group  mt-5">
+                  <input type="password" placeholder="Confirm Password" class="form-control border border-start-0 border-top-0  border-end-0 "   name="password" formControlName="confirm_password" >
+               </div>
+
+
+               <div  *ngIf="(registerFormControl['confirm_password'].touched||submitted)  && registerFormControl['confirm_password'].invalid">
+                  <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['confirm_password'].errors?.['required']">
+                     The  Confirm Password Required
+                  </div>
+
+                  <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['confirm_password'].errors?.['minlength']">
+                     The Password Should Minimum 8 Character
+                  </div>
+
+                  <div class="  alert  p-0" style="color:red ;" *ngIf="!registerFormControl['confirm_password'].errors?.['minlength'] && registerFormControl['confirm_password'].errors?.['pattern']">
+                     Password should have  at least 1 uppercase letter, 1 lowercase
+                                letter and 1 number
+                  </div>
+
+                  <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['confirm_password'].errors?.['passwordMismatch']">
+                     Password  Not Match With Confirm Password
+                  </div>
+             </div>
+
+             <div class="input-group  mt-5 ">
+               <input type="text"  placeholder="Mobile No" class="form-control border border-start-0 border-top-0  border-end-0 "  name="first_name"  formControlName=mobile_no>
+            </div>
+
+            <div  *ngIf="(registerFormControl['mobile_no'].touched || submitted)  && registerFormControl['mobile_no'].invalid">
+               <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['mobile_no'].errors?.['required']">
+                  The Mobile No Required
+               </div>
+               <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['mobile_no'].errors?.['pattern']">
+                  The Mobile No Should Be Container Only Mobile No
+               </div>
+
+               <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['mobile_no'].errors?.['minlength'] || registerFormControl['mobile_no'].errors?.['maxlength']">
+                  The Mobile No Should Be Contain 10 Digits Only
+               </div>
+          </div>
+
+
+          <div class="input-group  mt-5 ">
+            <input type="text"  placeholder="Bussiness Name" class="form-control border border-start-0 border-top-0  border-end-0 "  name="business name"  formControlName=business_name>
+         </div>
+
+         <div  *ngIf="(registerFormControl['business_name'].touched ||submitted)  && registerFormControl['business_name'].invalid">
+              <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['business_name'].errors?.['required']">
+                 The Bussiness Name Required
+              </div>
+         </div>
+
+         <div class="input-group  mt-5 ">
+            <input type="text"  placeholder="business address" class="form-control border border-start-0 border-top-0  border-end-0 "  name="business_address"  formControlName=business_address>
+         </div>
+
+         <div  *ngIf="(registerFormControl['business_address'].touched ||submitted)  && registerFormControl['business_address'].invalid">
+              <div class="  alert  p-0" style="color:red ;" *ngIf="registerFormControl['business_address'].errors?.['required']">
+                 The Bussiness Address Required
+              </div>
+         </div>
+
+
+         
+
+
+           
+          <div class="  alert  p-0" style="color:red ;" *ngIf="res">
+           {{res }}
+         </div>
+               <div class="input-group mt-5">
+                 <button type="submit" class="btn btn2 form-control" >Register</button>
+               </div>
+             </form>
+           
+        </div>
+    </div>
+</div>
