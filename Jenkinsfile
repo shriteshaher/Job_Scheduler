@@ -18,7 +18,7 @@ pipeline{
     stage("deploy"){
       steps{
          echo "deploy successfully"
-        withCredentials([usernamePassword(credentials:'Server_creadintial',usernameVarialble:USER,passwordVarialble:PWD)]){
+        withCredentials([usernamePassword(credentials:'Server_creadintial',usernameVarialble:USER,passwordVarialble:PASSWORD)]){
           sh "some script ${USER}"
       }
       }
