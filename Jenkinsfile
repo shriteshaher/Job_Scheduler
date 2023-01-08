@@ -20,6 +20,7 @@ pipeline{
                 expression {
                     params.executeTests
                 }
+        }
 
       steps{
          echo "test successfully"
