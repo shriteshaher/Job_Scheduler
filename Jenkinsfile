@@ -3,7 +3,7 @@ pipeline{
   
   parameters{
    
-    choice(name: 'Branch', choices: ["Dev","Prod","QA"], description: '')
+    choice(name: 'Branch', choices: ["Dev","Prod","QA","UAT"], description: '')
         booleanParam(name: 'executeTests', defaultValue: true, description: '')
 
   }
