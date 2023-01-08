@@ -21,6 +21,7 @@ pipeline{
         withCredentials(usernamePassword(credentials:'Server_creadintial',usernameVarialble:USER,passwordVariable:PWD)){
           sh "some script ${USER}"
       }
+      }
   }
   
   
