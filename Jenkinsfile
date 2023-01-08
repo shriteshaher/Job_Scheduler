@@ -1,5 +1,9 @@
 pipeline{
   agent any
+  
+  parameters{
+    choice(name:"versiont",choices:["Shritesh" ,"Aher"],descreption:"")
+  }
   stages{
     
     stage("build"){
